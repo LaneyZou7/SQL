@@ -1,0 +1,45 @@
+/* In this project, I created my own table with some small set of “famous people”, then created another table about things they do and join those to create nice human readable lists. */
+
+CREATE TABLE billionaires (id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT, age INTEGER, country TEXT);
+
+INSERT INTO billionaires (name, age, country) VALUES ("Bernard Arnault", 74, "France");
+INSERT INTO billionaires (name, age, country) VALUES ("Elon Musk", 51, "United States");
+INSERT INTO billionaires (name, age, country) VALUES ("Jeff Bezos", 59, "United States");
+INSERT INTO billionaires (name, age, country) VALUES ("Larry Ellison", 78, "United States");
+INSERT INTO billionaires (name, age, country) VALUES ("Warren Buffett", 92, "United States");
+INSERT INTO billionaires (name, age, country) VALUES ("Bill Gates", 67, "United States");
+INSERT INTO billionaires (name, age, country) VALUES ("Michael Bloomberg", 81, "United States");
+INSERT INTO billionaires (name, age, country) VALUES ("Carlos Slim Helu", 83, "Mexico");
+INSERT INTO billionaires (name, age, country) VALUES ("Mukesh Ambani", 65, "India");
+INSERT INTO billionaires (name, age, country) VALUES ("Steve Ballmer", 67, "United States");
+INSERT INTO billionaires (name, age, country) VALUES ("Francoise Bettencourt Meyer", 69, "France");
+INSERT INTO billionaires (name, age, country) VALUES ("Larry Page", 50, "United States");
+INSERT INTO billionaires (name, age, country) VALUES ("Amancio Ortega", 87, "Spain");
+INSERT INTO billionaires (name, age, country) VALUES ("Sergey Brin", 49, "United States");
+INSERT INTO billionaires (name, age, country) VALUES ("Zhong Shanshan", 68, "China");
+INSERT INTO billionaires (name, age, country) VALUES ("Mark Zuckerberg", 38, "United States");
+
+CREATE TABLE wealth (id INTEGER PRIMARY KEY AUTOINCREMENT, billionaire_id INTEGER, net_worth_billion INTEGER, source TEXT, industry TEXT);
+
+INSERT INTO wealth (billionaire_id, net_worth_billion, source, industry) VALUES (1, 211, "LVMH", "Fashion & Retail");
+INSERT INTO wealth (billionaire_id, net_worth_billion, source, industry) VALUES (2, 180, "Tesla", "Automotive");
+INSERT INTO wealth (billionaire_id, net_worth_billion, source, industry) VALUES (3, 114, "Amazon", "Technology");
+INSERT INTO wealth (billionaire_id, net_worth_billion, source, industry) VALUES (4, 107, "Oracle", "Technology");
+INSERT INTO wealth (billionaire_id, net_worth_billion, source, industry) VALUES (5, 106, "Berkshire Hathaway", "Finance & Investments");
+INSERT INTO wealth (billionaire_id, net_worth_billion, source, industry) VALUES (6, 104, "Microsoft", "Technology");
+INSERT INTO wealth (billionaire_id, net_worth_billion, source, industry) VALUES (7, 94.5, "Bloomberg LP", "Media & Entertainment");
+INSERT INTO wealth (billionaire_id, net_worth_billion, source, industry) VALUES (8, 93, "Telecom", "Telecom");
+INSERT INTO wealth (billionaire_id, net_worth_billion, source, industry) VALUES (9, 83.4, "Diversified", "Diversified");
+INSERT INTO wealth (billionaire_id, net_worth_billion, source, industry) VALUES (10, 80.7, "Microsoft", "Technology");
+INSERT INTO wealth (billionaire_id, net_worth_billion, source, industry) VALUES (11, 80.5, "L'Oréal", "Fashion & Retail");
+INSERT INTO wealth (billionaire_id, net_worth_billion, source, industry) VALUES (12, 79.2, "Google", "Technology");
+INSERT INTO wealth (billionaire_id, net_worth_billion, source, industry) VALUES (13, 77.3, "Zara", "Fashion & Retail");
+INSERT INTO wealth (billionaire_id, net_worth_billion, source, industry) VALUES (14, 76, "Google", "Technology");
+INSERT INTO wealth (billionaire_id, net_worth_billion, source, industry) VALUES (15, 68, "Beverages, pharmaceuticals", "Food & Beverage");
+INSERT INTO wealth (billionaire_id, net_worth_billion, source, industry) VALUES (16, 64.4, "Facebook", "Technology");
+
+/* Return the total net worth for each billionaire along with their source of wealth */
+SELECT b.name, w.net_worth_billion, w.source
+FROM billionaires AS b
+JOIN wealth AS w
+ON b.id = w.billionaire_id;
