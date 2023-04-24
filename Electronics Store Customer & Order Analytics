@@ -105,7 +105,7 @@ AND orderID IS NOT NULL;
 
 
 /* 13. Which product brought in the most revenue in January and how much revenue did it bring in total? */
-SELECT Product, SUM(quantity*price) AS revenue
+SELECT Product, SUM(Quantity*price) AS revenue
 FROM BIT_DB.JanSales 
 GROUP BY Product
 ORDER BY revenue DESC
