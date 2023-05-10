@@ -40,7 +40,7 @@ FROM cafe
 WHERE price < 4
 and popularity > 90;
 
---find the items with a popularity score above the average popularity score for their section:
+--find the items with a popularity score above the average popularity score for their section.
 WITH section_popularity_cte AS (
 SELECT section, item, popularity, AVG(popularity) OVER (PARTITION BY section) AS avg_popularity
 FROM cafe
