@@ -38,8 +38,40 @@ INSERT INTO wealth (billionaire_id, net_worth_billion, source, industry) VALUES 
 INSERT INTO wealth (billionaire_id, net_worth_billion, source, industry) VALUES (15, 68, "Beverages, pharmaceuticals", "Food & Beverage");
 INSERT INTO wealth (billionaire_id, net_worth_billion, source, industry) VALUES (16, 64.4, "Facebook", "Technology");
 
-/* Return the total net worth for each billionaire along with their source of wealth */
+/* 1. Return the total net worth for each billionaire along with their source of wealth. */
 SELECT b.name, w.net_worth_billion, w.source
 FROM billionaires AS b
 JOIN wealth AS w
 ON b.id = w.billionaire_id;
+
+/* 2. Find the name and net worth of the top 5 billionaires */
+SELECT b.name, w.net_worth_billion 
+FROM billionaires AS b
+JOIN wealth AS w
+ON b.id = w.billionaire_id 
+ORDER BY w.net_worth_billion DESC 
+LIMIT 5;
+
+/* 3. Find the average age of billionaires in each industry.*/
+SELECT AVG(b.age) as avg_age, w.industry 
+FROM billionaires AS b
+JOIN wealth AS w
+ON b.id = w.billionaire_id 
+GROUP BY industry 
+ORDER BY avg_age DESC;
+
+/* 4. Find the top 5 industries with the highest total net worth of billionaires, and their corresponding total net worth. */
+SELECT SUM(w.net_worth_billion) as total_net_worth, industry 
+FROM billionaires AS b
+JOIN wealth AS w
+ON b.id = w.billionaire_id 
+GROUP BY industry 
+ORDER BY total_net_worth DESC 
+LIMIT 5;
+
+/* 5. Find all the billionaires who have a net worth greater than 100 billion dollars and are over 60 years old. */
+SELECT b.name, b.age, w.net_worth_billion
+FROM billionaires AS b
+JOIN wealth AS w
+ON b.id = w.billionaire_id 
+WHERE w.net_worth_billion > 100 AND b.age > 60;
